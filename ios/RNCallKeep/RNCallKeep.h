@@ -10,13 +10,13 @@
 #import <UIKit/UIKit.h>
 #import <CallKit/CallKit.h>
 #import <Intents/Intents.h>
-//#import <AVFoundation/AVAudioSession.h>
 
 #import <React/RCTEventEmitter.h>
 
+API_AVAILABLE(ios(10.0))
 @interface RNCallKeep : RCTEventEmitter <CXProviderDelegate>
 
-@property (nonatomic, strong) CXCallController *callKeepCallController;
+@property (nonatomic, strong) CXCallController * _Nullable callKeepCallController;
 @property (nonatomic, strong) CXProvider *callKeepProvider;
 
 + (BOOL)application:(UIApplication *)application
@@ -32,9 +32,9 @@ continueUserActivity:(NSUserActivity *)userActivity
                    handleType:(NSString *)handleType
                      hasVideo:(BOOL)hasVideo
           localizedCallerName:(NSString * _Nullable)localizedCallerName
-                  fromPushKit:(BOOL)fromPushKit
-                      payload:(NSDictionary * _Nullable)payload;
+                  fromPushKit:(BOOL)fromPushKit;
 
-+ (void)endCallWithUUID:(NSString *)uuidString
-                 reason:(int)reason;
++ (CXProviderConfiguration *)getProviderConfiguration:(NSDictionary*)settings;
+- (void)setupSetting:(NSDictionary *)options;
+
 @end
